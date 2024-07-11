@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { createElement } from 'react';
+import Header from './Header';
+import Content from './Content';
+
 function App() {
     return (
         <div>
-            <h1>Ex03</h1>
-            <p>함수 컴포넌트</p>
+            <Header />
+            <Content />
         </div>
     );
 }
