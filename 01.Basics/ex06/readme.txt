@@ -1,7 +1,7 @@
 ex06: React JSX 기반의 Application Refactoring
 
 React API 기반에서 JSX 기반의 Application으로 리팩토링 하기
-
+    (JS 코드)  (JS 코드 아님)
 
 == [실습] ===============================================
 

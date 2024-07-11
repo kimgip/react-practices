@@ -15,7 +15,11 @@ module.exports = {
         }, {
             test: /\.(png|gif|jp?eg|svg|ico|tif?f|bmp)/i,
             type: 'asset/resource'
-        }]               
+        }, {
+            test: /\.js/i,
+            exclude: /node_modules/,
+            use: 'babel-loader'
+        }]
     },     
     devServer: {
         host: '0.0.0.0',
