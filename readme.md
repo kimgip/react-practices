@@ -16,6 +16,13 @@ React Practice
 파일 구조
 
 ```
+tabbox *
+   |-- backend
+   |-- frontend
+
+guestbook
+gallery
+
 emaillist *
    |-- backend
    |-- frontend
@@ -24,7 +31,7 @@ kanbanboard *
    |-- backend
    |-- frontend  
 
-mysite09(guestbook, gallery) *
+mysite08(guestbook, gallery) *
    |-- backend
    |-- frontend
 ```
