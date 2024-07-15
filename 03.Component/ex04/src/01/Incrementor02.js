@@ -1,17 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Incrementor01 from './Incrementor01';
 
-export default function ({begin, step}) {
+function Incrementor02 ({begin, step}) {
+    const [val, setVal] = useState(begin);
+    // const [val2, setVal2] = useState(20);
+
     return (
         <div>
-            <button>
+            <button onClick={() => {
+                setVal(val + step);
+            }}>
                 <strong>
                     {'+'}
                 </strong>
             </button>
             {' '}
             <span>
-                {begin}
+                {val}
             </span>
         </div>
     );
 }
+
+export default Incrementor02
