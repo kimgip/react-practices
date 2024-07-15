@@ -20,7 +20,7 @@
                 background-color: #ccc;
                 cursor: pointer;
 
-                &.tab_active {
+                &:global(.active) {
                     background-color: #fc6;
                 }
             }
