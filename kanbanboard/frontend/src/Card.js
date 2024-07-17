@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TaskList from './TaskList';
 import {_Card, Card_Title, Card_Title_Open} from './assets/scss/Card.scss';
 
-function Card({title, contents}) {
+function Card({title, description, tasks}) {
+    const [show, setShow] = useState(false)
+
     return (
         <div className={_Card}>
-            <div className={[Card_Title, Card_Title_Open].join(' ')}>
-                Stroy Board 작성
+            <div className={show ? [Card_Title, Card_Title_Open].join(' ') : Card_Title} onClick={() => setShow(!show)}>
+                {title}
             </div>
-            <div className={'Card_Details'}>
-                기능 기반의 화면 목업 작업
-                <TaskList />
-            </div>
+                <div className={'Card_Details'}>
+                    {description}
+                    {
+                        show ?
+                        <TaskList tasks={tasks}/>
+                        :
+                        null
+                    }
+                </div>
         </div>
     );
 }

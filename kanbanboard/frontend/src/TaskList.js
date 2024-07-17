@@ -2,13 +2,15 @@ import React from 'react';
 import Task from './Task';
 import {Task_List, Input_Add_Task} from './assets/scss/TaskList.scss';
 
-function TaskList(props) {
+function TaskList({tasks}) {
     return (
         <div className={Task_List}>
             <ul>
-                <Task />
+                {tasks.map((e) => {
+                    return <Task name={e.name} done={e.done}/>
+                })}
             </ul>
-            <input class={Input_Add_Task} type='text' placeholder='태스크 추가' />
+            <input className={Input_Add_Task} type='text' placeholder='태스크 추가' />
 
         </div>
     );

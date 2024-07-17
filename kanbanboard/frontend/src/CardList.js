@@ -6,7 +6,13 @@ function CardList({name, cards}) {
     return (
         <div className={Card_List}>
             <h1>{name}</h1>
-            <Card />
+            {
+                cards.map(
+                    (e) => {
+                        return <Card key={e.no} title={e.title} description={e.description} tasks={e.tasks}/>
+                    }
+                )
+            }
         </div>
     );
 }

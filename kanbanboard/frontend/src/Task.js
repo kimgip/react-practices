@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {_Task, Task_Remove} from './assets/scss/Task.scss';
 
-function Task(props) {
+function Task({name, done}) {
+    const [checked, setChecked] = useState(done)
     return (
         <li class={_Task}>
-            <input type='checkbox' checked='false'/>사용자 스토리 리스트업
-            <a href='#' class={Task_Remove}></a>
+            <input type='checkbox' checked={checked} onClick={() => setChecked(!checked)}/>
+            {name}
+            <a href='#' className={Task_Remove}></a>
         </li>
     );
 }
