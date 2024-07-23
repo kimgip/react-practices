@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TaskList from './TaskList';
 import {_Card, Card_Title, Card_Title_Open} from './assets/scss/Card.scss';
 
-function Card({no, title, description, tasks, addTask}) {
+function Card({no, title, description, tasks, addTask, updateTask, deleteTask}) {
     const [show, setShow] = useState(false)
 
     return (
@@ -14,7 +14,7 @@ function Card({no, title, description, tasks, addTask}) {
                     {description}
                     {
                         show ?
-                        <TaskList no={no} tasks={tasks} addTask={addTask}/>
+                        <TaskList no={no} tasks={tasks} addTask={addTask} updateTask={updateTask} deleteTask={deleteTask}/>
                         :
                         null
                     }

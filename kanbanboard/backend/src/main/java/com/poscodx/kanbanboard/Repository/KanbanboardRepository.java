@@ -35,5 +35,11 @@ public class KanbanboardRepository {
 		sqlSession.insert("task.insert", vo);
 	}
 	
+	public void update(TaskVo vo) {
+		sqlSession.insert("task.update", vo);
+	}
 	
+	public void delete(Long no) {
+		sqlSession.delete("task.delete", no);
+	}
 }

@@ -6,7 +6,60 @@ import data from './assets/json/data.js';
 function KanbanBoard() {
     const [cards, setCards] = useState(data);
 
-    const addTask = async (task) => {
+    const deleteTask = async (no) => {
+        try {
+            const response = await fetch(`/api?no=${no}`, {
+                method: 'delete',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+
+            const json = await response.json();
+
+            if(json.result !== 'success') {
+                throw new Error(json.message);
+            }
+
+            fetchCards();
+
+        } catch(err) {
+            console.error(err);
+        }
+    }
+
+    const updateTask = async (task) => {
+        try {
+            const response = await fetch('/api', {
+                method: 'put',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(task)
+            });
+            
+            if (!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+
+            const json = await response.json();
+
+            if(json.result !== 'success') {
+                throw new Error(json.message);
+            }
+
+        } catch(err) {
+            console.error(err);
+        }
+    }
+
+    const addTask = async (task, refInput) => {
         try {
             const response = await fetch('/api', {
                 method: 'post',
@@ -27,7 +80,8 @@ function KanbanBoard() {
                 throw new Error(json.message);
             }
             
-            // setCards();
+            refInput.current.value = "";
+            fetchCards();
 
         } catch(err) {
             console.error(err);
@@ -68,9 +122,28 @@ function KanbanBoard() {
 
     return (
         <div className='Kanban_Board'>
-            <CardList name={'To Do'} cards={cards.filter(e => e.status=='ToDo')} addTask={addTask}/>
-            <CardList name={'Doing'} cards={cards.filter(e => e.status=='Doing')} addTask={addTask}/>
-            <CardList name={'Done'} cards={cards.filter(e => e.status=='Done')} addTask={addTask}/>
+            <CardList
+                name={'To Do'}
+                cards={cards.filter(e=>e.status=='ToDo')}
+                addTask={addTask}
+                updateTask={updateTask}
+                deleteTask={deleteTask}
+            />
+            <CardList
+                name={'Doing'}
+                cards={cards.filter(e=>e.status=='Doing')}
+                addTask={addTask}
+                updateTask={updateTask}
+                deleteTask={deleteTask}
+            />
+            <CardList
+                name={'Done'}
+                cards={cards.filter(e=>e.status=='Done')}
+                addTask={addTask}
+                updateTask={updateTask}
+                deleteTask={deleteTask}
+            />
+
         </div>
     );
 }
